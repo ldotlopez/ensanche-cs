@@ -1,0 +1,65 @@
+body {
+	max-width: 800px;
+	margin: 0 auto;
+	min-width: 480px;
+}
+
+p {
+	text-align: justify;
+	font-size: 1.2em;
+	font-family: verdana;
+}
+
+h1 {
+	font-size: 32px;
+}
+
+.photo-foot {
+	font-style: italic;
+	font-size: 0.7em;
+}
+
+.row {
+	margin-bottom: 1.5em;
+}
+
+.modal-body {
+	text-align:center;
+}
+.modal-body img {
+	margin: 0 auto;
+	max-height: 600px;
+}
+
+.local-centered {
+	margin: 0 auto;
+}
+
+#gallery-container a {
+	display: inline-block;
+	max-width: 96px;
+	margin: 2px;
+}
+
+@media print {
+	h1 {
+		font-size: 32px;
+	}
+	p {
+		font-size: 1em;
+	}
+    .page-break {
+        page-break-after: always;
+    }
+
+   div {
+        page-break-inside: avoid;
+    }
+   p {
+        page-break-inside: avoid;
+    }
+    
+    .print-hide {
+    	display: none;
+    }
+}

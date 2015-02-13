@@ -11,7 +11,7 @@ var
     processhtml = require('gulp-processhtml'),
     uglify = require('gulp-uglify');
 
-gulp.task('default', ["styles", "scripts", "files"], [], function() {
+gulp.task('default', ["styles", "scripts", "files"], function() {
 
 });
 
@@ -22,7 +22,11 @@ gulp.task("styles", [], function () {
                 .src([
                     "./src/_components/bootstrap/dist/css/bootstrap.min.css",
                     "./src/_components/bootstrap/dist/css/bootstrap-theme.min.css",
+					"./src/_components/blueimp-gallery/css/blueimp-gallery.min.css",
                 ]),
+
+            gulp
+                .src('./src/styles/**/*.css'),
 
             gulp
                 .src('./src/styles/**/*.less')
@@ -32,7 +36,7 @@ gulp.task("styles", [], function () {
                 .pipe(mincss())
         )
         .pipe(concat('main.css'))
-        .pipe(gulp.dest('./build/styles/'))
+        .pipe(gulp.dest('./dist/styles/'))
 });
 
 gulp.task("scripts", [], function () {
@@ -40,7 +44,8 @@ gulp.task("scripts", [], function () {
             gulp
                 .src([
                     "./src/_components/jquery/dist/jquery.min.js",
-                    "./src/_components/bootstrap/dist/js/bootstrap.min.js"
+                    "./src/_components/bootstrap/dist/js/bootstrap.min.js",
+					"./src/_components/blueimp-gallery/js/blueimp-gallery.min.js"
                 ]),
 
             gulp
@@ -48,7 +53,7 @@ gulp.task("scripts", [], function () {
                 .pipe(uglify())
         )
         .pipe(concat('main.js'))
-        .pipe(gulp.dest('./build/scripts/'))
+        .pipe(gulp.dest('./dist/scripts/'))
 });
 
 
@@ -57,17 +62,23 @@ gulp.task("app-files", [], function () {
         .src("./src/**/*.html")
         .pipe(processhtml({}))
         .pipe(minhtml())
-        .pipe(gulp.dest("./build/"));
+        .pipe(gulp.dest("./dist/"));
 });
 
 
 gulp.task("bootstrap-files", [], function () {
     return gulp
         .src("./src/_components/bootstrap/dist/fonts/**")
-        .pipe(copy("./build/fonts/", {prefix: 5}));
+        .pipe(copy("./dist/fonts/", {prefix: 5}));
 });
 
-gulp.task("files", ["bootstrap-files", "app-files"], function () {
+gulp.task("assets", [], function () {
+    return gulp
+        .src("./src/assets/**")
+        .pipe(copy("./dist/assets/", {prefix: 2}));
+});
+
+gulp.task("files", ["bootstrap-files", "assets", "app-files"], function () {
 
 });
 

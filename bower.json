@@ -17,6 +17,6 @@
   ],
   "devDependencies": {
     "bootstrap": "~3.3.2",
-    "less": "~2.4.0"
+    "blueimp-gallery": "~2.15.2"
   }
 }
